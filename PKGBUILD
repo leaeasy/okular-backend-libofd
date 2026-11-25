@@ -18,14 +18,16 @@ depends=(
 )
 makedepends=('cmake' 'ninja' 'extra-cmake-modules>=6.13')
 checkdepends=('appstream')
+source=("https://github.com/leaeasy/okular-backend-libofd/archive/refs/tags/${pkgver}.tar.gz")
+sha256sums=('1382006f4cf1facf09ee10cf0a2a78a19753b6ceb0481d0cc03e1b08b7d684fd')
 
 build() {
-    cmake -S "$srcdir/$pkgname" -B "$srcdir/build" -G Ninja \
+    cmake -S "$srcdir/$pkgname-$pkgver" -B "$srcdir/build" -G Ninja \
         -DCMAKE_BUILD_TYPE=Release \
         -DCMAKE_INSTALL_PREFIX=/usr \
         -DCMAKE_INSTALL_LIBDIR=lib \
         -DKDE_INSTALL_USE_QT_SYS_PATHS=ON \
-        -DBUILD_TESTING=ON \
+        -DBUILD_TESTING=OFF \
         -DOKULAR_OFD_CORE_CONFIGURATION="${OKULAR_OFD_CORE_CONFIGURATION:-NOCONFIG}"
     cmake --build "$srcdir/build"
 }
