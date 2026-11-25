@@ -1,0 +1,13 @@
+[Desktop Entry]
+MimeType=application/ofd;
+Terminal=false
+Name=Okular
+GenericName=Document Viewer
+TryExec=okularkirigami
+Exec=okularkirigami %u
+Icon=okular
+Type=Application
+NoDisplay=true
+Categories=Qt;KDE;Graphics;Viewer;
+InitialPreference=2
+X-KDE-AliasFor=org.kde.okular.kirigami.desktop

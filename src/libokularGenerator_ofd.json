@@ -1,0 +1,12 @@
+{
+    "KPlugin": {
+        "Name": "OFD Backend",
+        "Name[zh_CN]": "OFD 后端",
+        "Description": "Open Fixed-layout Document backend",
+        "License": "GPL",
+        "MimeTypes": ["application/ofd"],
+        "Version": "0.2.0"
+    },
+    "X-KDE-Priority": 2,
+    "X-KDE-okularAPIVersion": 1
+}

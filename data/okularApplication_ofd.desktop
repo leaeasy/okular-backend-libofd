@@ -1,0 +1,13 @@
+[Desktop Entry]
+MimeType=application/ofd;
+Terminal=false
+Name=Okular
+GenericName=Document Viewer
+Comment=Universal document viewer
+Exec=okular %U
+Icon=okular
+Type=Application
+InitialPreference=2
+Categories=Qt;KDE;Graphics;Viewer;
+NoDisplay=true
+X-KDE-AliasFor=org.kde.okular.desktop

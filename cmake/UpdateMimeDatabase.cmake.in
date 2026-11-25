@@ -1,0 +1,28 @@
+# SPDX-FileCopyrightText: 2026 OFD plugin contributors
+# SPDX-License-Identifier: BSD-3-Clause
+
+# Package installations use their distribution's MIME database trigger. Never
+# run a host tool against a staged root or a cross-compiled installation.
+if(NOT "$ENV{DESTDIR}" STREQUAL "" OR "@CMAKE_CROSSCOMPILING@")
+    return()
+endif()
+
+set(_ofd_mime_packages "@KDE_INSTALL_MIMEDIR@")
+if(NOT IS_ABSOLUTE "${_ofd_mime_packages}")
+    set(_ofd_mime_packages "${CMAKE_INSTALL_PREFIX}/${_ofd_mime_packages}")
+endif()
+get_filename_component(_ofd_mime_dir "${_ofd_mime_packages}" DIRECTORY)
+find_program(_ofd_update_mime_database NAMES update-mime-database)
+if(NOT _ofd_update_mime_database)
+    message(WARNING "OFD MIME registration requires: update-mime-database \"${_ofd_mime_dir}\"")
+    return()
+endif()
+
+execute_process(COMMAND "${_ofd_update_mime_database}" "${_ofd_mime_dir}"
+    RESULT_VARIABLE _ofd_mime_result
+    OUTPUT_VARIABLE _ofd_mime_output
+    ERROR_VARIABLE _ofd_mime_error)
+if(NOT _ofd_mime_result STREQUAL "0")
+    message(FATAL_ERROR "OFD MIME database update failed: ${_ofd_mime_error}\nRun: update-mime-database \"${_ofd_mime_dir}\"")
+endif()
+message(STATUS "Updated OFD MIME database: ${_ofd_mime_dir}")
